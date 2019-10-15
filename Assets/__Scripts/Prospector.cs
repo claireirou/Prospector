@@ -38,12 +38,12 @@ public class Prospector : MonoBehaviour
         deck.InitDeck(deckXML.text);
         Deck.Shuffle(ref deck.cards); // This shuffles the deck by reference
 
-        Card c;
-        for (int cNum = 0; cNum < deck.cards.Count; cNum++)
-        {
-            c = deck.cards[cNum];
-            c.transform.localPosition = new Vector3((cNum % 13) * 3, cNum / 13 * 4, 0);
-        }
+        //Card c;
+        //for (int cNum = 0; cNum < deck.cards.Count; cNum++)
+        //{
+        //    c = deck.cards[cNum];
+        //    c.transform.localPosition = new Vector3((cNum % 13) * 3, cNum / 13 * 4, 0);
+        //}
 
         layout = GetComponent<Layout>();    // Get the Layout component
         layout.ReadLayout(layoutXML.text);  // Pass LayoutXML to it
