@@ -29,7 +29,7 @@ public class CardProspector : Card
         // Call the CardClicked method on the Prospector singleton
         Prospector.S.CardClicked(this);
         base.OnMouseUpAsButton();
-            
+
     }
 
 }
