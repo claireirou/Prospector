@@ -43,7 +43,7 @@ public class Prospector : MonoBehaviour
     void SetUpUITexts()
     {
         GameObject go = GameObject.Find("HighScore");
-        if(go != null)
+        if (go != null)
         {
             highScoreText = go.GetComponent<Text>();
         }
@@ -53,13 +53,13 @@ public class Prospector : MonoBehaviour
 
         // Set up the UI texts that show at the end of the round
         go = GameObject.Find("GameOver");
-        if(go != null)
+        if (go != null)
         {
             gameOverText = go.GetComponent<Text>();
         }
 
         go = GameObject.Find("RoundResult");
-        if(go != null)
+        if (go != null)
         {
             roundResultText = go.GetComponent<Text>();
         }
@@ -326,11 +326,12 @@ public class Prospector : MonoBehaviour
         else
         {
             gameOverText.text = "Game Over";
-            if(ScoreManager.HIGH_SCORE <= score)
+            if (ScoreManager.HIGH_SCORE <= score)
             {
                 string str = "You got the high score!\n High score: " + score;
                 roundResultText.text = str;
-            } else
+            }
+            else
             {
                 roundResultText.text = "Your final score was: " + score;
             }

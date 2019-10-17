@@ -46,7 +46,7 @@ public class FloatingScore : MonoBehaviour
     private Text txt;
 
     // Set up the FloatingScore and movement
-    public void Init(List<Vector2>ePts,float eTimeS = 0, float eTimeD = 1)
+    public void Init(List<Vector2> ePts, float eTimeS = 0, float eTimeD = 1)
     {
         rectTrans = GetComponent<RectTransform>();
         rectTrans.anchoredPosition = Vector2.zero;
@@ -55,7 +55,7 @@ public class FloatingScore : MonoBehaviour
 
         bezierPts = new List<Vector2>(ePts);
 
-        if(ePts.Count == 1)
+        if (ePts.Count == 1)
         {
             // There is only one point, go there
             transform.position = ePts[0];
@@ -84,27 +84,30 @@ public class FloatingScore : MonoBehaviour
 
         float u = (Time.time - timeStart) / timeDuration;
         float uC = Easing.Ease(u, easingCurve);
-        if(u<0)
+        if (u < 0)
         {
             state = eFSState.pre;
             txt.enabled = false;
-        } else
+        }
+        else
         {
             if (u >= 1)
             { // we're done moving
                 uC = 1;     // Set uC = 1 so we don't overshoot
                 state = eFSState.post;
-                if(reportFinishTo != null)
+                if (reportFinishTo != null)
                 {
                     // There is a callback GameObject
                     reportFinishTo.SendMessage("FSCallback", this);
                     Destroy(gameObject);
-                } else
+                }
+                else
                 {
                     // There is nothing to callback
                     state = eFSState.idle;
                 }
-            } else
+            }
+            else
             {
                 // This is active and moving
                 state = eFSState.active;
@@ -113,7 +116,7 @@ public class FloatingScore : MonoBehaviour
             // Use bezier curve to move this object
             Vector2 pos = Utils.Bezier(uC, bezierPts);
             rectTrans.anchorMin = rectTrans.anchorMax = pos;
-            if(fontSizes != null && fontSizes.Count>0)
+            if (fontSizes != null && fontSizes.Count > 0)
             {
                 // Adjust the fontSize of this GUIText
                 int size = Mathf.RoundToInt(Utils.Bezier(uC, fontSizes));
